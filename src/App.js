@@ -1,7 +1,9 @@
+import Header from "./components/Header";
+import List from "./components/List";
 
 function App() {
 
-  const lista = [
+  const calzados = [
     { id: 1, nombre: 'Zapatos', precio: 10000 },
     { id: 2, nombre: 'Zapatillas Deportivas', precio: 15000 },
     { id: 3, nombre: 'Botas', precio: 12000 },
@@ -9,27 +11,28 @@ function App() {
     { id: 5, nombre: 'Pantuflas', precio: 3000 }
   ]
 
-  const estilosDeApp = {
-    ul: {
-      listStyle: 'none'
-    },
-    li: { fontWeight: '600', marginBottom: '1rem' }
-  }
+  const electrodomesticosPreGuerra = [
+    { id: 1, nombre: 'Heladera', precio: 100000 },
+    { id: 2, nombre: 'Cocina', precio: 45000 },
+    { id: 3, nombre: 'Batidora', precio: 5000 },
+    { id: 4, nombre: 'Microondas', precio: 10000 },
+    { id: 5, nombre: 'Lavarropa', precio: 60000 }
+  ]
+
+  const electrodomesticosPosGuerra = [
+    { id: 1, nombre: 'Heladera', precio: 10000 },
+    { id: 2, nombre: 'Cocina', precio: 4500 },
+    { id: 3, nombre: 'Batidora', precio: 500 },
+    { id: 4, nombre: 'Microondas', precio: 1000 },
+    { id: 5, nombre: 'Lavarropa', precio: 6000 }
+  ]
 
   return (
     <>
-      <h1>Lista de Calzados</h1>
-      <ul style={estilosDeApp.ul}>
-        <li style={estilosDeApp.li}>Nombre y Precio de nuestro productos</li>
-        {
-          lista.map(zapato => {
-            return (<li key={zapato.id} style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '200px' }}>
-              <span>{zapato.nombre}</span>
-              <span>{zapato.precio}</span>
-            </li>)
-          })
-        }
-      </ul>
+      <Header />
+      <List lista = { calzados } titulo = "Lista De Calzados" />
+      <List lista = { electrodomesticosPreGuerra } titulo = "Lista De Electrodomésticos Pre-guerra" />
+      <List lista = { electrodomesticosPosGuerra } titulo = "Lista De Electrodomésticos Pos-guerra" />
     </>
   );
 }
