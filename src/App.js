@@ -1,39 +1,24 @@
+import { useState } from "react";
+import Form from "./components/Form";
 import Header from "./components/Header";
-import List from "./components/List";
+import Listas from "./components/Listas";
+import Main from "./components/Main";
+import PropagationExample from "./components/PropagationExample";
 
 function App() {
 
-  const calzados = [
-    { id: 1, nombre: 'Zapatos', precio: 10000 },
-    { id: 2, nombre: 'Zapatillas Deportivas', precio: 15000 },
-    { id: 3, nombre: 'Botas', precio: 12000 },
-    { id: 4, nombre: 'Tacos', precio: 10000 },
-    { id: 5, nombre: 'Pantuflas', precio: 3000 }
-  ]
-
-  const electrodomesticosPreGuerra = [
-    { id: 1, nombre: 'Heladera', precio: 100000 },
-    { id: 2, nombre: 'Cocina', precio: 45000 },
-    { id: 3, nombre: 'Batidora', precio: 5000 },
-    { id: 4, nombre: 'Microondas', precio: 10000 },
-    { id: 5, nombre: 'Lavarropa', precio: 60000 }
-  ]
-
-  const electrodomesticosPosGuerra = [
-    { id: 1, nombre: 'Heladera', precio: 10000 },
-    { id: 2, nombre: 'Cocina', precio: 4500 },
-    { id: 3, nombre: 'Batidora', precio: 500 },
-    { id: 4, nombre: 'Microondas', precio: 1000 },
-    { id: 5, nombre: 'Lavarropa', precio: 6000 }
-  ]
+  const [title, setTitle] = useState('Título');
 
   return (
-    <>
-      <Header />
-      <List lista = { calzados } titulo = "Lista De Calzados" />
-      <List lista = { electrodomesticosPreGuerra } titulo = "Lista De Electrodomésticos Pre-guerra" />
-      <List lista = { electrodomesticosPosGuerra } titulo = "Lista De Electrodomésticos Pos-guerra" />
-    </>
+    <div>
+      <h1>{title}</h1>
+      <Main>
+        <Header />
+        <Form />
+        <PropagationExample />
+        <Listas />
+      </Main>
+    </div>
   );
 }
 

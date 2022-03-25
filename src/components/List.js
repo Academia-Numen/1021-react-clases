@@ -1,5 +1,7 @@
 
-const List = (props) => {
+const List = ({ titulo, lista }) => {
+
+    
 
     const estilosDeApp = {
         ul: {
@@ -10,13 +12,14 @@ const List = (props) => {
 
     return (
         <ul style={estilosDeApp.ul}>
-            <li style={estilosDeApp.li}>{props.titulo}</li>
+            <li style={estilosDeApp.li}>{titulo}</li>
             {
-                props.lista.map(zapato => {
+                lista.map(item => {
                     return (
-                        <li key={zapato.id} style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '200px' }}>
-                            <span>{zapato.nombre}</span>
-                            <span>{zapato.precio}</span>
+                        <li
+                            key={item.id} style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '200px' }}>
+                            <span>{item.nombre}</span>
+                            <span>{item.precio}</span>
                         </li>)
                 })
             }

@@ -1,7 +1,11 @@
 
-const Main = () => {
+const Main = ({ children }) => {
+
   return (
-    <div>Main</div>
+
+    <div>
+      { children }
+    </div>
   )
 }
 
