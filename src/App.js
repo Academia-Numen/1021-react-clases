@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { render } from "@testing-library/react";
+import { useEffect, useState } from "react";
 
 function ListItem ({ id, nombre, eliminarItem }) {
 
@@ -13,10 +14,17 @@ function App() {
     { id: 4, value: 'Estudiar React' },
   ]);
 
+  const [efectos, setEfectos] = useState(0);
+
   function eliminarLista (identificador) {
     const listaFiltrada = items.filter(item => item.id !== identificador);
     setItems(listaFiltrada)
   }
+
+  useEffect(() => {
+    setEfectos(prevValue => prevValue + 1);
+    console.log('Se dispara el efecto sincronizado con items por vez numero: ', efectos);
+  }, [items])
 
   return (
     <div>
