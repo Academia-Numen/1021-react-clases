@@ -1,0 +1,31 @@
+{
+    "team" : {
+        "country": "Argentina",
+        "matches": [
+            {
+                "match": 1,
+                "date": "22/11/2022",
+                "day": "Martes",
+                "time": "7 AM",
+                "rival": "Arabia Saudita",
+                "stadium": "Lusail Stadium"
+            },
+            {
+                "match": 2,
+                "date": "26/11/2022",
+                "day": "Sabado",
+                "time": "16 PM",
+                "rival": "Mexico",
+                "stadium": "Lusail Stadium"
+            },
+            {
+                "match": 3,
+                "date": "30/11/2022",
+                "day": "Martes",
+                "time": "16 PM",
+                "rival": "Polonia",
+                "stadium": "Stadium 974"
+            }
+        ]
+    }
+}
