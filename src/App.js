@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import { useEffect, useState } from "react";
 
 function ListItem ({ id, nombre, eliminarItem }) {
@@ -23,14 +22,16 @@ function App() {
 
   useEffect(() => {
     setEfectos(prevValue => prevValue + 1);
-    console.log('Se dispara el efecto sincronizado con items por vez numero: ', efectos);
+    console.log('Se dispara useEffect');    
   }, [items])
+
+  console.log('Se renderiza el componente: ', efectos);
 
   return (
     <div>
       <ul>
         {
-          items.map((item, index) => {
+          items.map((item) => {
             return(
               <ListItem key={item.id} nombre={item.value} eliminarItem={eliminarLista} id={item.id}/>
             )
