@@ -10,15 +10,30 @@ const optionsData = [
 function App() {
 
   const [data, setData] = useState([]);
+  const [error, setError] = useState({
+    isError: false,
+    message: ''
+  });
+  const [loading, setLoading] = useState(false);
 
   const [optionValue, setOptionValue] = useState('');
   const [indexMatch, setIndexMatch] = useState(-1);
 
-  function getData() {
-    axios('http://localhost:8000/team').then(res => {
+  async function getData() {
+    setLoading(true);
+    try {
+      const res = await axios('http://localhost:8000/team');
       setData(res.data);
-      console.log(res.data);
-    })
+    } catch (err) {
+      setError({
+        isError: true,
+        message: err.message || "Hubo un error"
+      })
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500)
+    }
   }
 
   useEffect(() => {
@@ -55,19 +70,24 @@ function App() {
       <ul>
         <li><h2>Partidos Fase de Grupos:</h2></li>
         {
-          data.length === 0 ? null :
-            data.matches.map((item, index) => {
-              return (
-                <li key={index} style={{ background: index === indexMatch ? 'yellow' : '' }}>
-                  <span>Partido: {item.match}</span>
-                  <span>Fecha: {item.date}</span>
-                  <span>Dia: {item.day}</span>
-                  <span>Hora: {item.time}</span>
-                  <span>Rival: {item.rival}</span>
-                  <span>Estadio: {item.stadium}</span>
-                </li>
-              )
-            })
+          loading ? <div>Cargando peticion...</div> :
+
+            error.isError ? <div style={{ background: 'red', padding: 20 }}>Hubo un error: {error.message}</div> :
+
+              data.length === 0 ? null :
+
+                data.matches.map((item, index) => {
+                  return (
+                    <li key={index} style={{ background: index === indexMatch ? 'yellow' : '' }}>
+                      <span>Partido: {item.match}</span>
+                      <span>Fecha: {item.date}</span>
+                      <span>Dia: {item.day}</span>
+                      <span>Hora: {item.time}</span>
+                      <span>Rival: {item.rival}</span>
+                      <span>Estadio: {item.stadium}</span>
+                    </li>
+                  )
+                })
         }
       </ul>
     </div>
