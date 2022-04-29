@@ -1,22 +1,29 @@
 import BookList from "./components/BookList";
 import Navbar from "./components/Navbar";
+import ToggleButton from "./components/ToggleButton";
 import BooksContextProvider from "./contexts/BooksContext";
+import ThemeContextProvider from "./contexts/ThemeContext";
 
 function App() {
 
   return (
     <div className="App">
 
-      <BooksContextProvider>
+      <ThemeContextProvider>
 
         <Navbar />
-        <div>
-          <div>
-            <BookList />
-          </div>
-        </div>
 
-      </BooksContextProvider>
+        <BooksContextProvider>
+          <div>
+            <div>
+              <BookList />
+            </div>
+          </div>
+        </BooksContextProvider>
+
+        <ToggleButton />
+
+      </ThemeContextProvider>
 
     </div>
   )

@@ -13,9 +13,9 @@ function BooksContextProvider({ children }) {
   ])
 
   return (
-      <BooksContext.Provider value={books}>
-          { children }
-      </BooksContext.Provider>
+    <BooksContext.Provider value={books}>
+      {children}
+    </BooksContext.Provider>
   )
 }
 

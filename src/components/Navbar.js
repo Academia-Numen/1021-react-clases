@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 function Navbar() {
+  const { themeStyles } = useContext(ThemeContext);
 
   return (
-    <nav>
+    <nav style={themeStyles}>
       <h1>Bookstore</h1>
       <ul>
         <li>Home</li>
