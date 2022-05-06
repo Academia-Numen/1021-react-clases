@@ -1,23 +1,28 @@
 import { useContext, useState } from "react";
 import { BookContext } from "../context/BookContext";
+import { ACTIONS } from "../reducers/bookReducer";
 
 function NewBookForm() {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const { setBooks } = useContext(BookContext);
+
+    const { books, dispatch } = useContext(BookContext);
+
+    function generateId(books) {
+        const id = Math.max(0, ...books.map(book => book.id)) + 1;
+        return id;
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newBook = { id: 6, title, author };
-        setBooks(prevState => [...prevState, newBook]);
+
+        const newBook = { id: generateId(books), title, author };
+
+        dispatch({ type: ACTIONS.ADD_BOOK, payload: newBook });
+
         setTitle('');
         setAuthor('');
     }
-
-    // ID DINAMICO
-    // MANEGAR ESTADO CON REDUCER
-    // AGREGAR UN CUSTOM HOOK
-    // GUARDAR LA INFO EN LOCAL STORAGE
 
     return (
         <form onSubmit={handleSubmit}>
@@ -29,6 +34,7 @@ function NewBookForm() {
                 required onChange={(e) => setAuthor(e.target.value)} />
 
             <input type="submit" value='Añadir Libro' />
+
         </form>
     )
 }
