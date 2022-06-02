@@ -1,8 +1,8 @@
 import { useEffect, useReducer } from "react";
 
-const useLocalStorage = (key, valorInicial, reducer) => {
+const useLocalStorage = (key, valorInicial, funcionReductora) => {
 
-    const [data, dispatch] = useReducer(reducer, [], () => {
+    const [data, dispatch] = useReducer(funcionReductora, [], () => {
         const localData = localStorage.getItem(key);
         return localData ? JSON.parse(localData) : valorInicial;
     });
